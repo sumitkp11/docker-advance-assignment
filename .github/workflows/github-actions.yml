@@ -27,11 +27,22 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+    # generate meta tags and labels for Docker Images
+    - name: Generate labels and tags
+      id: docker-meta
+      uses: docker/metadata-action@v5
+      with:
+        images: sumitkp497/docker-advance
+        tags: |
+            latest
+
     # build and push docker image
     - name: Build and Push Docker Image
       uses: docker/build-push-action@v6
       with:
         push: true
+        tags: ${{ steps.docker-meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
         platform: linux/amd64
 
 
