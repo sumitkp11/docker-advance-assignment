@@ -1,0 +1,5 @@
+name: Docker Compose CD
+
+on:
+  push:
+    branches: [ "main" ]
