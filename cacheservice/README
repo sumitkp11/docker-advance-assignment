@@ -1,0 +1,3 @@
+# This is readme file for cache service
+- The cache used for the Docker file is Redis Cache
+- The Redis have been exposed on 6379 port number

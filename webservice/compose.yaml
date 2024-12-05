@@ -1,0 +1,49 @@
+services:
+  web:
+    # the web service definition here
+    image: node:18-alpine
+    container_name: basic-web-container-2
+    command: sh -c "yarn install && yarn run dev"
+    ports:
+      - 127.0.0.1:3000:3000
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_DB: todos
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - docker-basic-network
+
+  mysql:
+    # the database service definition here
+    image: mysql:8.0
+    container_name: basic-mysql-container-2
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_DATABASE: todos
+    volumes:
+      - todo-mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - docker-basic-network
+
+  redis:
+    # the cache service definition here
+    image: redis:latest
+    container_name: basic-redis-container-2
+    ports:
+      - "6379:6379"
+    networks:
+      - docker-basic-network
+
+networks:
+  docker-basic-network:
+    driver: bridge
+volumes:
+  todo-mysql-data:
