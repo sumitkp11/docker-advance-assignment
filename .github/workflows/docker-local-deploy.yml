@@ -16,11 +16,7 @@ jobs:
 
       - name: Pull latest images
         run: docker compose pull
-        with:
-          compose-file: "./webservice/compose.yml"
 
       - name: Deploying with docker-compose
         run: docker compose up -d
 
-      - name: Cleaning old images
-        run: docker image prune -f
