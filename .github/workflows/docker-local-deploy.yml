@@ -2,7 +2,7 @@ name: Deploying Docker to Local
 
 on:
   workflow_run:
-    workflow: ["Docker Image CI"]
+    workflows: ["Docker Image CI"]
     types:
       - completed
 
