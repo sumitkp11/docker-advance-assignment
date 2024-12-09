@@ -47,7 +47,7 @@ jobs:
         platforms: linux/amd64
 
 # build and push docker image - cache service
-    - name: Build and Push Docker Image for Web Service
+    - name: Build and Push Docker Image for Cache Service
       uses: docker/build-push-action@v6
       with:
         push: true
@@ -57,7 +57,7 @@ jobs:
         platforms: linux/amd64
 
         # build and push docker image - db service
-    - name: Build and Push Docker Image for Web Service
+    - name: Build and Push Docker Image for DB Service
       uses: docker/build-push-action@v6
       with:
         push: true
