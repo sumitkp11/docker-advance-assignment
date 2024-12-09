@@ -1,0 +1,24 @@
+name: Deploying Docker to Local
+
+on:
+  workflow_run:
+    workflow: ["Docker Image CI"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Checking out code
+        uses: actions/checkout@v4
+
+      - name: Pull latest images
+        run: docker compose pull
+
+      - name: Deploying with docker-compose
+        run: docker compose up -d
+
+      - name: Cleaning old images
+        run: docker image prune -f
