@@ -36,8 +36,8 @@ jobs:
         tags: |
             latest
 
-    # build and push docker image
-    - name: Build and Push Docker Image
+    # build and push docker image - web service
+    - name: Build and Push Docker Image for Web Service
       uses: docker/build-push-action@v6
       with:
         push: true
@@ -45,3 +45,28 @@ jobs:
         tags: ${{ steps.docker-meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         platforms: linux/amd64
+
+# build and push docker image - cache service
+    - name: Build and Push Docker Image for Web Service
+      uses: docker/build-push-action@v6
+      with:
+        push: true
+        context: ./cacheservice/
+        tags: ${{ steps.docker-meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        platforms: linux/amd64
+
+        # build and push docker image - db service
+    - name: Build and Push Docker Image for Web Service
+      uses: docker/build-push-action@v6
+      with:
+        push: true
+        context: ./dbservice/
+        tags: ${{ steps.docker-meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        platforms: linux/amd64
+
+    
+    
+
+  
