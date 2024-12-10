@@ -27,12 +27,29 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    # generate meta tags and labels for Docker Images
+    # generate meta tags and labels for Docker Images - web service
     - name: Generate labels and tags
-      id: docker-meta
+      id: docker-meta-web
       uses: docker/metadata-action@v5
       with:
-        images: sumitkp497/docker-advance
+        images: sumitkp497/docker-advance-web
+        tags: |
+            latest
+  # generate meta tags and labels for Docker Images - cache service
+    - name: Generate labels and tags
+      id: docker-meta-cache
+      uses: docker/metadata-action@v5
+      with:
+        images: sumitkp497/docker-advance-cache
+        tags: |
+            latest
+
+  # generate meta tags and labels for Docker Images - DB service
+    - name: Generate labels and tags
+      id: docker-meta-db
+      uses: docker/metadata-action@v5
+      with:
+        images: sumitkp497/docker-advance-db
         tags: |
             latest
 
@@ -42,7 +59,7 @@ jobs:
       with:
         push: true
         context: ./webservice/
-        tags: ${{ steps.docker-meta.outputs.tags }}
+        tags: ${{ steps.docker-meta-web.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         platforms: linux/amd64
 
@@ -52,7 +69,7 @@ jobs:
       with:
         push: true
         context: ./cacheservice/
-        tags: ${{ steps.docker-meta.outputs.tags }}
+        tags: ${{ steps.docker-meta-cache.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         platforms: linux/amd64
 
@@ -62,7 +79,7 @@ jobs:
       with:
         push: true
         context: ./dbservice/
-        tags: ${{ steps.docker-meta.outputs.tags }}
+        tags: ${{ steps.docker-meta-db.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         platforms: linux/amd64
 
