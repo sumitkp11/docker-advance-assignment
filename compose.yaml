@@ -17,12 +17,12 @@ services:
       - mysql
       - redis
     networks:
-      - docker-advance-network
+      - docker-advanced-network
 
   mysql:
     # the database service definition here
     image: mysql:8.0
-    container_name: basic-mysql-container-2
+    container_name: advanced-mysql-container-1
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
       MYSQL_DATABASE: todos
@@ -31,7 +31,7 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - docker-basic-network
+      - docker-advanced-network
 
   redis:
     # the cache service definition here
@@ -40,10 +40,10 @@ services:
     ports:
       - "6379:6379"
     networks:
-      - docker-basic-network
+      - docker-advanced-network
 
 networks:
-  docker-advance-network:
+  docker-advanced-network:
     driver: bridge
 volumes:
   todo-mysql-data:
