@@ -14,8 +14,10 @@ services:
       MYSQL_USER: root
       MYSQL_DB: todos
     depends_on:
-      - mysql
-      - redis
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     networks:
       - docker-advanced-network
 

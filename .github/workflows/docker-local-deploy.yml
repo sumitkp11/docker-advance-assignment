@@ -20,3 +20,6 @@ jobs:
       - name: Deploying with docker-compose
         run: docker compose up -d
 
+      - name: Cleaning up old unused images
+        run: docker image prune -f
+
