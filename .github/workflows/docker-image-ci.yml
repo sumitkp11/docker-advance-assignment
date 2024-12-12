@@ -82,6 +82,8 @@ jobs:
         tags: ${{ steps.docker-meta-db.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         platforms: linux/amd64
+        secret-files: |
+          "my_secret=./secrets.txt"
 
     
     
