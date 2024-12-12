@@ -2,12 +2,12 @@ services:
   web:
     # the web service definition here
     image: sumitkp497/docker-advance-web:latest
-    container_name: advanced-web-container-1
-    command: sh -c "node src/index.js"
+    container_name: advanced-web-container-2
+    restart: always
     ports:
       - 3000:3000
     volumes:
-      - ./:/app
+      - .:/app
     environment:
       MYSQL_HOST: mysql
       MYSQL_USER: root
