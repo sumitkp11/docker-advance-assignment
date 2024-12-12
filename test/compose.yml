@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  webapp:
+    image: sumitkp497/docker_basic:latest  # Use the image as specified in the Dockerfile
+    container_name: webapp-container             # Name the container
+    command: ["node", "src/index.js"]           # Override CMD (if needed)
+    ports:
+      - "3000:3000"                             # Map port 3000 of the container to port 3000 on the host
+    expose:
+      - "3000"                                  # Expose the port inside the container (optional)
