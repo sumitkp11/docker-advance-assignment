@@ -3,10 +3,9 @@ services:
     # the web service definition here
     image: sumitkp497/docker-advance-web:latest
     container_name: advanced-web-container-1
-    command: sh -c "yarn install && yarn run dev"
+    command: sh -c "node src/index.js"
     ports:
-      - 3000:3000
-    working_dir: /app
+      - 127.0.0.1:3000:3000
     volumes:
       - ./:/app
     environment:

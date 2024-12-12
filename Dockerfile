@@ -1,7 +1,4 @@
-FROM node:lts-alpine
-WORKDIR /app
-COPY ./webservice .
-RUN yarn install --production
+FROM sumitkp497/docker-advance-web:latest
 CMD ["node", "src/index.js"]
 EXPOSE 3000
 
