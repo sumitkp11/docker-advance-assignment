@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN yarn install --production
 
 # copy the rest of the application code into the container
-COPY . .
+COPY . ./app/
 
 # starting the application
 CMD ["node", "src/index.js"]

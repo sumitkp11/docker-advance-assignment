@@ -3,7 +3,6 @@ services:
     # the web service definition here
     image: sumitkp497/docker-advance-web:latest
     container_name: advanced-web-container-2
-    restart: always
     ports:
       - 3000:3000
     volumes:
